@@ -1,2 +1,2 @@
 # IMS
-inventory management system
+Simple inventory management system powered by Flask :)
