@@ -1,0 +1,112 @@
+{% load static %}
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>تنظیمات</title>
+
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="{% static 'assets/dist/css/bootstrap.rtl.min.css' %}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'form-validation.css' %}" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+    
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="{% if company %} {{ company.logo.url }}{% else %}{% static 'assets/brand/bootstrap-logo.svg' %}{% endif %}" alt="" width="72" height="57">
+      <h2>تغییر مشخصات کالا</h2>
+      <hr>
+    </div>
+
+    <div class="row g-3">
+      
+      <div class="col-md-12 col-lg-12 text-center">
+        <form method="POST" class="needs-validation" novalidate>
+          {% csrf_token %}
+          {% if product %}
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">نام محصول</label>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="{{ product.name }}" name="name" required>
+              <div class="invalid-feedback">
+                نام محصول را وارد کنید
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+                <label for="web_id" class="form-label">میزان</label>
+                <input type="text" class="form-control" id="firstName" placeholder="" value="{{ product.count }}" name="count" required>
+                <div class="invalid-feedback">
+                  میزان محصول را وارد کنید
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label for="website" class="form-label">قیمت محصول</label>
+                <input type="link" class="form-control" id="firstName" placeholder="" value="{{ product.price }}" name="price" required>
+                <div class="invalid-feedback">
+                  قیمت محصول را وارد کنید
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="state" class="form-label">نوع محصول</label>
+                <select class="form-select" id="state" name="type" required>
+                  <option value="countable" {% if product.type == 'countable' %} selected {% endif %}>عددی</option>
+                  <option value="noncountable" {% if product.type == 'noncountable' %} selected {% endif %}>مقداری</option>
+                </select>
+              </div>
+              
+              
+
+          <hr class="my-4">
+
+          <button class="w-100 btn btn-primary btn-lg" type="submit">بروزرسانی</button>
+          {% endif %}
+        </form>
+        <div>
+        <a class="w-10 btn btn-secondary btn-md" href="{% url 'products' %}">بازگشت</a>
+      </div>
+      </div>
+    </div>
+  </main>
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; Aria Rayan Iraninan</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Mobina :)</a></li>
+      <li class="list-inline-item"><a href="#">Ali Baghban</a></li>
+    </ul>
+  </footer>
+</div>
+
+
+    <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+      <script src="{% static 'form-validation.js' %}"></script>
+  </body>
+</html>

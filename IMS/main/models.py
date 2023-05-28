@@ -46,7 +46,7 @@ class Company(models.Model):
         img = Image.open(self.logo.path)
 
         if img.height > 100 or img.width > 100:
-            new_img = (100, 100)
+            new_img = (300, 300)
             img.thumbnail(new_img)
             img.save(self.logo.path)
     class Meta:
@@ -56,7 +56,7 @@ class Company(models.Model):
         return self.name
     
 class Product(models.Model):
-    company         = models.ManyToManyField('Company', null=True, verbose_name='شرکت وابسته')
+    company         = models.ManyToManyField('Company',blank=True, verbose_name='شرکت وابسته')
     name            = models.CharField(max_length=100, default=None, blank=True, verbose_name='نام محصول')
     TYPE_CHOICE     = [('countable','عددی'),('Noncountable','مقداری')]
     type            = models.CharField(max_length=20, default='عددی', choices=TYPE_CHOICE, verbose_name='نوع محصول')

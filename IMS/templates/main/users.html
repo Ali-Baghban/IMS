@@ -71,7 +71,7 @@
           </li>
           
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'products' %}">
               <span data-feather="shopping-cart"></span>
               محصولات
             </a>
@@ -89,7 +89,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'settings' %}">
               <span data-feather="layers"></span>
               تنظیمات
             </a>
@@ -110,6 +110,8 @@
               <th scope="col">سطح</th>
               <th scope="col">همراه</th>
               <th scope="col">حقوق</th>
+              <th scope="col">تغییر</th>
+              <th scope="col">حذف</th>
             </tr>
           </thead>
           <tbody>
@@ -121,6 +123,8 @@
               <td>{% if person.admin %}مدیر {% else %} پرسنل {% endif %}</td>
               <td>{{ person.phone }}</td>
               <td>{{ person.salary }}</td>
+              <td><a href=""><span data-feather="file-text"></span></a></td>
+              <td><a href=""><span data-feather="file-text"></span></a></td>
             </tr>
             {% endfor %}
             {% endif %}
