@@ -31,7 +31,7 @@ class Profile(models.Model):
         return self.name
 
 class Company(models.Model):
-    name            = models.CharField(max_length=100, null=True, blank=True, verbose_name='نام شرکت')
+    name            = models.CharField(max_length=100, null=True, blank=True, verbose_name='نام شرکت', unique=True)
     person          = models.ManyToManyField('Profile', verbose_name='کاربران')
     about           = models.TextField(blank=True, null=True, verbose_name='درباره ما')
     website         = models.CharField(max_length=200, default='https://google.com', blank=True, verbose_name='وبگاه شرکت')
@@ -68,3 +68,18 @@ class Product(models.Model):
         verbose_name_plural = 'محصولات'
     def __str__(self):
         return self.name
+
+class Report(models.Model):
+    company         = models.ManyToManyField('Company',blank=True, verbose_name='شرکت وابسته')
+    name            = models.CharField(max_length=100, default=None, blank=True, verbose_name='نام محصول')
+    TYPE_CHOICE     = [('countable','عددی'),('Noncountable','مقداری')]
+    type            = models.CharField(max_length=20, default='عددی', choices=TYPE_CHOICE, verbose_name='نوع محصول')
+    count           = models.IntegerField(default=0, blank=True, verbose_name='مقدار/تعداد')
+    price           = models.IntegerField(default=None, blank=True, verbose_name='قیمت')
+
+    class Meta:
+        verbose_name = 'گزارش'
+        verbose_name_plural = 'گزارشات'
+    def __str__(self):
+        return self.name
+    

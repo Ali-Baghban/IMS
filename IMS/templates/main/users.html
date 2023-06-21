@@ -83,7 +83,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'report' %}">
               <span data-feather="file-text"></span>
               گزارش گیری 
             </a>
@@ -101,6 +101,10 @@
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       
       <h2>کاربران</h2>
+      <div>
+       <!-- <a class="w-10 btn btn-primary btn-md" href="{% url 'product_add' %}">افزودن کارمند جدید</a>-->
+      </div>
+      <hr>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
@@ -123,8 +127,8 @@
               <td>{% if person.admin %}مدیر {% else %} پرسنل {% endif %}</td>
               <td>{{ person.phone }}</td>
               <td>{{ person.salary }}</td>
-              <td><a href=""><span data-feather="file-text"></span></a></td>
-              <td><a href=""><span data-feather="file-text"></span></a></td>
+              <td><a href="{% url 'user_update' person.id %}"><span data-feather="edit"></span></a></td>
+              <td><a href="{% url 'user_delete' person.id %}"><span data-feather="trash"></span></a></td>
             </tr>
             {% endfor %}
             {% endif %}

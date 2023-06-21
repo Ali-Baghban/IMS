@@ -1,0 +1,173 @@
+{% load static %}
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>ثبت نام</title>
+
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="{% static 'assets/dist/css/bootstrap.rtl.min.css' %}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'form-validation.css' %}" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+    
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="{% if company %} {{ company.logo.url }}{% else %}{% static 'assets/brand/bootstrap-logo.svg' %}{% endif %}" alt="" width="72" height="57">
+      <h2>ثبت نام در سامانه ی آنلاین انبارداری</h2>
+      <hr>
+    </div>
+
+    <div class="row g-3">
+      
+      <div class="col-md-12 col-lg-12 text-center">
+        <form method="POST" class="needs-validation" novalidate>
+          {% csrf_token %}
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label class="form-label">نام</label>
+              <input type="text" class="form-control"  name="firstname" required>
+              <div class="invalid-feedback">
+                نام را وارد کنید
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+                <label for="web_id" class="form-label">نام خانوادگی</label>
+                <input type="text" class="form-control"  name="lastname" required>
+                <div class="invalid-feedback">
+                  نام خانوادگی  را وارد کنید
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label for="website" class="form-label">ایمیل</label>
+                <input type="link" class="form-control"  name="email" required>
+                <div class="invalid-feedback">
+                  ایمیل خود را وارد کنید
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label for="website" class="form-label">نام کاربری</label>
+                <input type="link" class="form-control"  name="username" required>
+                <div class="invalid-feedback">
+                نام کاربری را وارد کنید
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label for="website" class="form-label">گذرواژه</label>
+                <input type="link" class="form-control"  name="password" required>
+                <div class="invalid-feedback">
+                گذرواژه را وارد کنید
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label for="website" class="form-label">تکرار گذرواژه</label>
+                <input type="link" class="form-control"  name="repassword" required>
+                <div class="invalid-feedback">
+                گذرواژه را مجدد وارد کنید
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <label for="website" class="form-label">بیوگرافی</label>
+                <textarea type="link" class="form-control"  name="bio" required></textarea>
+                <div class="invalid-feedback">
+                  بیوگرافی را وارد کنید
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label for="website" class="form-label">شماره همراه</label>
+                <input type="link" class="form-control"  name="phone" required>
+                <div class="invalid-feedback">
+                   شماره همراه را وارد کنید
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label for="website" class="form-label">میزان درامد</label>
+                <input type="link" class="form-control"  name="salary" required>
+                <div class="invalid-feedback">
+                میزان درامد را وارد کنید
+                </div>
+              </div>
+              <hr class="my-4">
+
+              <div class="col-sm-6">
+                <label for="website" class="form-label">نام شرکت</label>
+                <input type="link" class="form-control" name="company_name" required>
+                <div class="invalid-feedback">
+                  نام شرکت  را وارد کنید
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label for="website" class="form-label">درباره شرکت</label>
+                <textarea type="link" class="form-control" name="about" required></textarea>
+                <div class="invalid-feedback">
+                    درباره ی ما را وارد کنید
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label for="website" class="form-label">وبسایت</label>
+                <input type="link" class="form-control" name="website" required>
+                <div class="invalid-feedback">
+                   وبسایت را وارد کنید
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label for="website" class="form-label">شناسه شرکت</label>
+                <input type="link" class="form-control" name="web_id" required>
+                <div class="invalid-feedback">
+                   شناسه شرکت را وارد کنید
+                </div>
+              </div>
+              
+          <hr class="my-4">
+
+          <button class="w-100 btn btn-primary btn-lg" type="submit">ثبت نام</button>
+        </form>
+        <div>
+        <a class="w-10 btn btn-secondary btn-md" href="{% url 'products' %}">بازگشت</a>
+      </div>
+      </div>
+    </div>
+  </main>
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; Aria Rayan Iraninan</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Mobina :)</a></li>
+      <li class="list-inline-item"><a href="#">Ali Baghban</a></li>
+    </ul>
+  </footer>
+</div>
+
+
+    <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+      <script src="{% static 'form-validation.js' %}"></script>
+  </body>
+</html>

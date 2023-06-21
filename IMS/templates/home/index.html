@@ -1,0 +1,182 @@
+{% load static %}
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>سامانه انبارداری آنلاین</title>
+
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="{% static 'assets/dist/css/bootstrap.rtl.min.css' %}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'assets/carousel.rtl.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">سامانه انبارداری آنلاین</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="تبديل التنقل">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'register_company' %}">ثبت نام</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'login' %}">ورود</a>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      {% if sliders %}
+      {% for slide in sliders %}
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{ forloop.counter0 }}" class="active" aria-current="{% if forloop.counter0 == 0 %}True{% else %}False{% endif %}" aria-label="Slide {{ forloop.counter0 }}"></button>
+      {% endfor %}
+      {% endif %}
+    </div>
+    <div class="carousel-inner">
+      <!-- start slider -->
+      {% if sliders %}
+      {% for slide in sliders %}
+      <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+        <img src="{{ slide.photo.url }}" class="d-block w-100">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ slide.title }}</h5>
+          <p>{{ slide.caption }}</p>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+      
+      
+      <!-- end slider -->
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">السابق</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">التالي</span>
+    </button>
+  </div>
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing">
+
+    
+
+
+    <!-- START THE FEATURETTES -->
+{% if blogs %}
+{% for blog in blogs %}
+{% if forloop.counter0|divisibleby:2 %}
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">{{ blog.title }}</h2>
+        <p class="lead">{{ blog.body }}</p>
+      </div>
+      <div class="col-md-5">
+        <img src="{{ blog.photo.url }}" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="{{ blog.title }}">
+      </div>
+    </div>
+    <hr class="featurette-divider">
+{% else %}
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">{{ blog.title }}</h2>
+        <p class="lead">{{ blog.body }}</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img src="{{ blog.photo.url }}" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="{{ blog.title }}">
+      </div>
+    </div>
+    <hr class="featurette-divider">
+{% endif %}
+    {% endfor %}
+{% endif %}
+
+
+    <!-- /END THE FEATURETTES -->
+
+<!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+{% if about %}
+  <div class="container marketing">
+    
+    <!-- Three columns of text below the carousel -->
+    <div class="row text-center">
+      {% for a in about %}
+      <div class="col-lg-6">
+        <img src="{{ a.photo.url }}" width="150" height="150" class="bd-placeholder-img rounded-circle" alt="{{ a.name }}">
+        <br>
+        <h3>{{ a.name }}</h3>
+        <p>{{ a.caption }}</p>
+        <p><a class="btn btn-secondary" href="{{ a.link }}">بیشتر</a></p>
+      </div>
+      {% endfor %}
+    </div><!-- /.row -->
+
+
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+{% endif %}
+  </div><!-- /.container -->
+
+
+  <!-- FOOTER -->
+  <footer class="container">
+    <p class="float-end">
+      <a href="#">برو بالا</a>
+    </p>
+    <p >&copy; <a href="#">Mobina :)</a> - <a href="http://alibaghban.ir">Ali Baghban</a></p>
+  </footer>
+</main>
+
+
+    <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+      
+  </body>
+</html>
